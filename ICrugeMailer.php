@@ -21,5 +21,5 @@ interface ICrugeMailer {
     * @return boolean
     * @throws CrugeMailerException
     */
-    public function sendeMail($to,$subject,$body);
+    public function sendEmail($to,$subject,$body);
 }
