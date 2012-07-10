@@ -67,13 +67,17 @@
 				,$this->render('enviarclave',array('data'=>$usuario))
 			);
 		}
-        
-        public function sendEmail($to,$subject,$body) 
-        {
-            if(!parent::sendEmail($to,$subject,$body)) {
-                throw new CrugeMailerException('El Mail no ha sido enviado revise la configuración del servidor');
-            }
-            return true;
-        }
+		/*
+		    este metodo se coloca aqui para que puedas personalizar el envio de correo
+		    usando tu propia metodo, si quieres usar el metodo por defecto (mail) entonces
+		    simplemente llamas a parent::sendEmail.  
+		*/
+	        public function sendEmail($to,$subject,$body) 
+	        {
+	            if(!parent::sendEmail($to,$subject,$body)) {
+	                throw new CrugeMailerException('El Mail no ha sido enviado revise la configuración del servidor');
+	            }
+	            return true;
+	        }
 	}
 ?>
