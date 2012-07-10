@@ -63,9 +63,17 @@
 		}
 		
 		public function enviarClave(Usuario $usuario){
-			$this->sendemail($usuario->email,self::t("recuperacion de clave")
+			$this->sendEmail($usuario->email, self::t("recuperacion de clave")
 				,$this->render('enviarclave',array('data'=>$usuario))
 			);
 		}
+        
+        public function sendEmail($to,$subject,$body) 
+        {
+            if(!parent::sendEmail($to,$subject,$body)) {
+                throw new CrugeMailerException('El Mail no ha sido enviado revise la configuración del servidor');
+            }
+            return true;
+        }
 	}
 ?>
