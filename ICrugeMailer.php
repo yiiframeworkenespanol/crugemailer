@@ -11,4 +11,14 @@
 */
 interface ICrugeMailer {
 	public function t($text);
+
+    /**
+    *
+    * @method sendmailer
+    * @param String $to correo destinatario
+    * @param String $subject asunto del correo
+    * @param String $body cuerpo del correo 
+    * @return 
+    */
+    public function sendemail($to,$subject,$body);
 }

@@ -63,9 +63,14 @@
 		}
 		
 		public function enviarClave(Usuario $usuario){
-			$this->sendemail($usuario->email,self::t("recuperacion de clave")
+			$this->sendemail($usuario->email, self::t("recuperacion de clave")
 				,$this->render('enviarclave',array('data'=>$usuario))
 			);
 		}
+        
+        public funtion sendemail($to,$subject,$body) 
+        {
+            return parent::sendemail($to,$subject,$body);
+        }
 	}
 ?>
