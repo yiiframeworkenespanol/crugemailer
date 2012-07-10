@@ -75,7 +75,7 @@
 	        public function sendEmail($to,$subject,$body) 
 	        {
 	            if(!parent::sendEmail($to,$subject,$body)) {
-	                throw new CrugeMailerException('El Mail no ha sido enviado revise la configuración del servidor');
+	                throw new CrugeMailerException(self::t('El Mail no ha sido enviado revise la configuración del servidor'));
 	            }
 	            return true;
 	        }
