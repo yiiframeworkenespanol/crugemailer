@@ -63,7 +63,7 @@ abstract class CrugeMailerBase extends CApplicationComponent {
 	protected function render($viewname,$data=array()){
 		return $this->getController()->render($viewname,$data,true);
 	}
-	protected function sendemail($to,$subject,$body) {
+	protected function sendEmail($to,$subject,$body) {
 		$from = $this->mailfrom;
 		$headers="From: {$from}\r\nReply-To: {$from}";
 		$ret = @mail($to,$this->subjectprefix.$subject,$body,$headers);

@@ -68,9 +68,12 @@
 			);
 		}
         
-        public funtion sendemail($to,$subject,$body) 
+        public funtion sendEmail($to,$subject,$body) 
         {
-            return parent::sendemail($to,$subject,$body);
+            if(!parent::sendEmail($to,$subject,$body)) {
+                throw new CrugeMailerException('El Mail no ha sido enviado revise la configuración del servidor');
+            }
+            return true;
         }
 	}
 ?>
