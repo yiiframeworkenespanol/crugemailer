@@ -3,12 +3,16 @@ CrugeMailer
 
 Permite enviar correos electronicos basados en esquema de vistas y patrones (views & layouts), ayudando ademas a la centralizacion del despacho de los correos.
 
-autor:
+creado por:
 
-	Christian Salazar <christiansalazarh@gmail.com>	9-Jul-2012
 	Yii Framework en Español
-	bajo licencia en: http://www.yiiframeworkenespanol.org/licence
+	licencia: http://www.yiiframeworkenespanol.org/licence
 
+versiones:
+
+	10-JUL-2012 Carlos Belisario <carlos.belisario.gonzalez@gmail.com>	addexception, sendEmail
+	09-JUL-2012	Christian Salazar <christiansalazarh@gmail.com>			initial-commit
+	
 ###Uso (ejemplo)
 
 Supongamos que tienes un modelo cualquiera:

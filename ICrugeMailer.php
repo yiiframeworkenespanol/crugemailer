@@ -15,11 +15,9 @@ interface ICrugeMailer {
     /**
     *
     * @method sendmailer
-    * @param String $to correo destinatario
-    * @param String $subject asunto del correo
-    * @param String $body cuerpo del correo 
+    * @param Email $emal objeto con el correo electronico a enviar
     * @return boolean
     * @throws CrugeMailerException
     */
-    public function sendeMail($to,$subject,$body);
+    public function sendEmail(Email $mail);
 }

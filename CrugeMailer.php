@@ -63,17 +63,24 @@
 		}
 		
 		public function enviarClave(Usuario $usuario){
-			$this->sendEmail($usuario->email, self::t("recuperacion de clave")
-				,$this->render('enviarclave',array('data'=>$usuario))
-			);
+            $email = new Email();
+            $email->setTo($usuario)
+                ->setSubject(self::t("recuperacion de clave"))
+                ->setBody($this->render('enviarclave',array('data'=>$usuario)));			
+            $this->sendEmail($email);
+
 		}
-        
-        public function sendEmail($to,$subject,$body) 
-        {
-            if(!parent::sendEmail($to,$subject,$body)) {
-                throw new CrugeMailerException('El Mail no ha sido enviado revise la configuración del servidor');
-            }
-            return true;
-        }
+		/*
+		    este metodo se coloca aqui para que puedas personalizar el envio de correo
+		    usando tu propia metodo, si quieres usar el metodo por defecto (mail) entonces
+		    simplemente llamas a parent::sendEmail.  
+		*/
+	        public function sendEmail(Email $email) 
+	        {
+	            if(!parent::sendEmail($email)) {
+	               throw new CrugeMailerException(self::t('El Mail no ha sido enviado revise la configuración del servidor'));
+	            }
+	            return true;
+	        }
 	}
 ?>
