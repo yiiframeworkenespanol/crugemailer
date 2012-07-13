@@ -10,14 +10,16 @@
 	http://www.yiiframeworkenespanol.org/licencia
 */
 interface ICrugeMailer {
+
 	public function t($text);
 
     /**
-    *
-    * @method sendmailer
-    * @param Email $emal objeto con el correo electronico a enviar
-    * @return boolean
-    * @throws CrugeMailerException
-    */
-    public function sendEmail(Email $mail);
+     * @method sendMail send the mail 
+     * @param  string $body 
+     * @param  array  $to 
+     * @param  mixed $from  
+     * @param  string $subject
+     * @return boolean
+     */
+    public function sendEmail($body, array $to, array $from = null, $subject = '');
 }
