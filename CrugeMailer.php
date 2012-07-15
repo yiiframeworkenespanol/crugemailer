@@ -47,7 +47,7 @@
 			editar a CrugeMailerBase.php o crear un metodo sendemail con los mismos argumentos para que se ajuste a las necesidades.
 		
 		@author: Christian Salazar H. <christiansalazarh@gmail.com> @bluyell
-		http://www.yiiframeworkenespanol.org/licencia
+		http://www.yiiframeworkenespanol.org/licencia		
 	*/
 	class CrugeMailer extends CrugeMailerBase implements ICrugeMailer {
 	

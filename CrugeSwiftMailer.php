@@ -37,8 +37,12 @@ class CrugeSwiftMailer extends CrugeMailerBase implements ICrugeMailer
 	 * 
 	 * @override
 	 */
-	public function init(){
-		parent::init();				 				
+	public function init(){		
+		parent::init();		
+		/*		  
+		 * create the Object SwiftMailerContainer
+		 */
+		$this->container = new SwiftMailerContainer($this->getConfig());								 				
 	}
 
 	public function getConfig() {
@@ -71,12 +75,10 @@ class CrugeSwiftMailer extends CrugeMailerBase implements ICrugeMailer
      * 
      */
 	public function sendEmail($body, array $to, array $from = null, $subject = '')
-	{
-		$this->container = new SwiftMailerContainer($this->getConfig());		
+	{		
 		if(empty($from)) {
 			$from = array($this->mailfrom);		
-		}
-		$this->getConfig();
+		}		
 		$message = $this->container->getMessenger($subject)			
 			->setFrom($from)
 			->setTo($to)

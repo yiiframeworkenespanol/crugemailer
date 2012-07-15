@@ -18,15 +18,7 @@ class SwiftMailerContainer
 
 	public function __construct(array $config = null) 
 	{
-		spl_autoload_unregister(array('YiiBase', 'autoload')); // Disable Yii autoloader for use the SwiftMailer
-		/*function swiftmailer_configurator() {
-    		// configure Swift Mailer
-    		//Swift_DependencyContainer::getInstance()->register('');
-    		//Swift_Preferences::getInstance()->...
-    	
-		}*/
-
-		//Swift::init('swiftmailer_configurator');
+		spl_autoload_unregister(array('YiiBase', 'autoload')); // Disable Yii autoloader for use the SwiftMailer				
 		$this->config = $config;
 	}
 

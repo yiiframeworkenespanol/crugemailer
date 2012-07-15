@@ -48,17 +48,29 @@ esa llamada invocaria a un layout y una vista para darle formato a ese correo el
 			CrugeMailerBase		es el codigo base que tiene el trabajo fuerte
 			CrugeMailer			es tu propia clase en la cual crearas tus propios metodos
 								tal como en este ejemplo se creo a tuMetodoConTuNombreEspecifico()
+            CrugeSwiftMailer    es una la clase que paso a ser la principal para implementar la extensión, la misma nos permite utilizar la 
+                                libreria Swiftmailer http://swiftmailer.org/ y todos los beneficios que esta nos ofrece
+            CrugeSiwftMailerContainer es la clase contenedora de SwiftMailer, esta nos provee los métodos básicos para trabajar con la librería
 		
 	3. configura el componente en tu propio archivo protected/config/main.php de esta forma:
 			'crugemailer'=>array(
-				'class' => 'application.extensions.crugemailer.CrugeMailer',
+				'class' => 'application.extensions.crugemailer.CrugeSwiftMailer',
 				'mailfrom' => 'christiansalazarh@gmail.com',
+                'transport' => 'gmail' // gmail para usar el stmp de gmail (recomendado), no especificarlo trabajara la librería con la función mail de php
+                /**
+                *
+                * obligatorios si el transporte es gmail
+                */
+                'gmailAcount' => 'carlos.belisario.gonzalez@gmail.com',
+                'gmailPassword' => 'password de gmail',       
+       
 				'subjectprefix' => 'Prefijo que deseas agregar, es opcional - ',
 			),
-		nota aqui que application.extensions.crugemailer.CrugeMailer es el nombre de la clase
-		que tu has creado, la extension ya trae una clase lista para usar y ampliar, por tanto
-		puedes usarla directamente.
 		
+        nota aqui que application.extensions.crugemailer.CrugeSiwftMailer es la clase principal de la librería donde los desarrolladores estamos haciendo mantenimiento, sin embargo puedes trabajar sobre cualquiera de las clases CrugeMailer o CrugeSwiftMailer de la extension ya que están listas para usar y ampliar, por tanto
+		puedes usarla directamente.
+
+       		
 		luego configura los 'imports' para que la extension CrugeMailer sea cargada:
 			'import'=>array(
 				'application.models.*',
@@ -152,13 +164,9 @@ Solo a modo de ejemplo para que veas como usarla:
 
 	public function actionIndex()
 	{
-		$model = new Usuario();
-		
-		$model->email = 'juanperez@gmailx.com';
-		$model->nombres = "Juan Perez";
-		$model->password = "123456";
-		
-		Yii::app()->crugemailer->enviarClave($model);
+        //trabajando con CrugeSiwftMailer
+		Yii::app()->crugemailer->sendEmail('el cuerpo de lo que va a ser enviado en el mensaje', 
+            /*destinatario del mensaje*/array('carlos.belisario.gonzalez@gmail.com'), /*opcional puede configurarse en el application/config/main*/ array('contac@midominio.com'), /*opcional*/'Asunto del Correo Electrónico');
 		
 		// aqui render('index') no tiene nada que ver con el ejemplo, es para mostrarte
 		// que crugemailer no tiene nada que ver con renders de controllers normales,
@@ -168,6 +176,4 @@ Solo a modo de ejemplo para que veas como usarla:
 
 ###Donde personalizar la funcion mail() ?
 
-Para esto debes revisar el archivo /protected/extensions/crugemailer/CrugeMailerBase.php
-el metodo (protected) es: sendemail, el cual por defecto usa a mail(), aqui tu podrias hacer
-tus propias implementaciones y ajustes.
+Para personalizar la extensión puedes crear tu propia clase que extienda del CrugeMailerBase y sobreescribir el método sendEmail(), que es implementado de la interfaz, puedes ver un ejemplo en CrugeSiwftMailer
